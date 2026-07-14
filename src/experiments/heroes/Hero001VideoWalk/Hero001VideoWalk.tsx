@@ -1,9 +1,5 @@
 import './Hero001VideoWalk.css'
 
-const VIDEO_WEBM = '/videos/hero/sebastian-walking.webm'
-const VIDEO_MP4 = '/videos/hero/sebastian-walking.mp4'
-const VIDEO_POSTER = '/images/hero/sebastian-walking-poster.webp'
-
 export function Hero001VideoWalk() {
   return (
     <section className="video-walk" aria-labelledby="video-walk-title">
@@ -13,11 +9,10 @@ export function Hero001VideoWalk() {
         loop
         muted
         playsInline
-        poster={VIDEO_POSTER}
+        preload="metadata"
         aria-hidden="true"
       >
-        <source src={VIDEO_WEBM} type="video/webm" />
-        <source src={VIDEO_MP4} type="video/mp4" />
+        <source src="/videos/hero/hero-background.mp4" type="video/mp4" />
       </video>
 
       <div className="video-walk__overlay" aria-hidden="true" />

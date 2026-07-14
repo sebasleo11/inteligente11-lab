@@ -2,13 +2,11 @@
   position: relative;
   display: grid;
   min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 100svh;
   overflow: hidden;
   isolation: isolate;
   place-items: center;
-  background:
-    radial-gradient(circle at 50% 20%, #172235 0%, transparent 45%),
-    #080a0e;
+  background: #080a0e;
   color: #f5f7fa;
 }
 
@@ -21,18 +19,40 @@
 }
 
 .video-walk__media {
-  z-index: -2;
+  z-index: -1;
   object-fit: cover;
+  object-position: center;
+  opacity: 0.18;
 }
 
 .video-walk__overlay {
-  z-index: -1;
-  background:
-    linear-gradient(180deg, rgb(4 6 10 / 50%) 0%, rgb(4 6 10 / 16%) 44%, rgb(4 6 10 / 68%) 100%),
-    linear-gradient(90deg, rgb(4 6 10 / 34%), transparent 45%, rgb(4 6 10 / 34%));
+  background: rgb(4 6 10 / 46%);
+}
+
+.video-walk__overlay::before,
+.video-walk__overlay::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+}
+
+.video-walk__overlay::before {
+  background: radial-gradient(circle at center, rgb(39 60 91 / 24%) 0%, transparent 58%);
+}
+
+.video-walk__overlay::after {
+  background: linear-gradient(
+    180deg,
+    rgb(3 5 8 / 76%) 0%,
+    transparent 32%,
+    transparent 68%,
+    rgb(3 5 8 / 82%) 100%
+  );
 }
 
 .video-walk__content {
+  position: relative;
+  z-index: 1;
   width: min(100% - 2rem, 72rem);
   padding-block: 4rem;
   text-align: center;
@@ -54,6 +74,7 @@
 .video-walk__title strong {
   color: var(--color-accent);
   font-weight: 650;
+  text-shadow: 0 0 1.5rem rgb(139 184 255 / 18%);
 }
 
 .video-walk__subtitle {
@@ -80,7 +101,11 @@
   font-size: 0.9375rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+  transition:
+    transform 220ms ease,
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
 }
 
 .video-walk__button--primary {
@@ -113,18 +138,26 @@
   outline-offset: 4px;
 }
 
-.video-walk__title,
+.video-walk__button:active {
+  transform: translateY(0);
+}
+
+.video-walk__title span,
 .video-walk__subtitle,
 .video-walk__actions {
-  animation: video-walk-reveal 500ms ease-out both;
+  animation: video-walk-reveal 650ms ease-out both;
+}
+
+.video-walk__title span:nth-child(2) {
+  animation-delay: 90ms;
 }
 
 .video-walk__subtitle {
-  animation-delay: 80ms;
+  animation-delay: 180ms;
 }
 
 .video-walk__actions {
-  animation-delay: 160ms;
+  animation-delay: 270ms;
 }
 
 @keyframes video-walk-reveal {
@@ -140,6 +173,10 @@
 }
 
 @media (max-width: 40rem) {
+  .video-walk__media {
+    object-position: 58% center;
+  }
+
   .video-walk__content {
     width: min(100% - 2.5rem, 32rem);
   }
@@ -164,13 +201,20 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .video-walk__title,
+  .video-walk__title span,
   .video-walk__subtitle,
   .video-walk__actions {
     animation: none;
+    opacity: 1;
+    transform: none;
   }
 
   .video-walk__button {
     transition: none;
+  }
+
+  .video-walk__button:hover,
+  .video-walk__button:active {
+    transform: none;
   }
 }
