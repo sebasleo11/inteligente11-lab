@@ -1,0 +1,224 @@
+.about-sebastian {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  padding: clamp(5rem, 8vw, 7rem) clamp(1.5rem, 6vw, 6rem);
+  background:
+    radial-gradient(circle at 25% 48%, rgb(94 168 255 / 9%) 0%, transparent 30%),
+    radial-gradient(circle at 34% 55%, rgb(139 92 246 / 7%) 0%, transparent 34%),
+    #090b12;
+  color: #f5f7fa;
+  place-items: center;
+}
+
+.about-sebastian__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 42fr) 2px minmax(0, 58fr);
+  align-items: center;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  width: min(100%, 78rem);
+}
+
+.about-sebastian__portrait {
+  position: relative;
+  isolation: isolate;
+  opacity: 0;
+  transform: translateX(-2rem);
+  transition:
+    opacity 600ms ease-out,
+    transform 600ms ease-out;
+}
+
+.about-sebastian__portrait::before {
+  position: absolute;
+  inset: 12% 4% 4%;
+  z-index: -1;
+  border-radius: 45%;
+  background: linear-gradient(145deg, rgb(94 168 255 / 14%), rgb(139 92 246 / 10%));
+  filter: blur(3rem);
+  content: '';
+}
+
+.about-sebastian__portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 48rem;
+  object-fit: contain;
+  box-shadow: 0 1.25rem 3.5rem rgb(0 0 0 / 22%);
+}
+
+.about-sebastian__divider {
+  width: 2px;
+  height: min(68vh, 36rem);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgb(94 168 255 / 35%) 24%,
+    rgb(139 92 246 / 35%) 76%,
+    transparent
+  );
+}
+
+.about-sebastian__content h2 {
+  max-width: 38rem;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2.6rem, 4.8vw, 5rem);
+  font-weight: 650;
+  letter-spacing: -0.05em;
+  line-height: 0.98;
+  text-wrap: balance;
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition:
+    opacity 600ms ease-out 80ms,
+    transform 600ms ease-out 80ms;
+}
+
+.about-sebastian__copy {
+  max-width: 39rem;
+  margin-top: 2.25rem;
+}
+
+.about-sebastian__copy p {
+  margin: 0.9rem 0 0;
+  color: rgb(232 237 244 / 72%);
+  font-size: clamp(1rem, 1.3vw, 1.125rem);
+  line-height: 1.65;
+  opacity: 0;
+  transform: translateY(1rem);
+  transition:
+    opacity 600ms ease-out,
+    transform 600ms ease-out;
+}
+
+.about-sebastian__copy .about-sebastian__lead {
+  margin-top: 0;
+  color: #fff;
+  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+  font-weight: 600;
+}
+
+.about-sebastian__copy p:nth-child(1) {
+  transition-delay: 160ms;
+}
+
+.about-sebastian__copy p:nth-child(2) {
+  transition-delay: 220ms;
+}
+
+.about-sebastian__copy p:nth-child(3) {
+  transition-delay: 280ms;
+}
+
+.about-sebastian__copy p:nth-child(4) {
+  transition-delay: 340ms;
+}
+
+.about-sebastian__copy p:nth-child(5) {
+  transition-delay: 400ms;
+}
+
+.about-sebastian__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  text-align: center;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(1rem);
+  transition:
+    opacity 600ms ease-out 480ms,
+    transform 600ms ease-out 480ms,
+    background-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.about-sebastian__closing {
+  max-width: 32rem;
+  margin: 1.1rem 0 0;
+  color: rgb(232 237 244 / 62%);
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(0.75rem);
+  transition:
+    opacity 600ms ease-out 600ms,
+    transform 600ms ease-out 600ms;
+}
+
+.about-sebastian--visible .about-sebastian__portrait,
+.about-sebastian--visible .about-sebastian__content h2,
+.about-sebastian--visible .about-sebastian__copy p,
+.about-sebastian--visible .about-sebastian__cta,
+.about-sebastian--visible .about-sebastian__closing {
+  opacity: 1;
+  transform: translate(0);
+}
+
+.about-sebastian--visible .about-sebastian__cta:hover {
+  transform: translateY(-2px);
+}
+
+.about-sebastian--visible .about-sebastian__cta:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 64rem) {
+  .about-sebastian__inner {
+    grid-template-columns: minmax(0, 40fr) 2px minmax(0, 60fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 48rem) {
+  .about-sebastian {
+    padding-block: 5rem;
+    text-align: center;
+  }
+
+  .about-sebastian__inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    width: min(100%, 36rem);
+  }
+
+  .about-sebastian__portrait {
+    width: min(82%, 25rem);
+    margin-inline: auto;
+  }
+
+  .about-sebastian__divider {
+    width: min(70%, 18rem);
+    height: 2px;
+    margin-inline: auto;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgb(94 168 255 / 35%) 24%,
+      rgb(139 92 246 / 35%) 76%,
+      transparent
+    );
+  }
+
+  .about-sebastian__content h2,
+  .about-sebastian__copy,
+  .about-sebastian__closing {
+    margin-inline: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-sebastian__portrait,
+  .about-sebastian__content h2,
+  .about-sebastian__copy p,
+  .about-sebastian__cta,
+  .about-sebastian__closing {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

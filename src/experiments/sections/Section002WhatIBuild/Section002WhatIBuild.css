@@ -26,6 +26,23 @@
   content: '';
 }
 
+.what-i-build::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  height: 7rem;
+  background: linear-gradient(
+    to bottom,
+    rgb(9 11 18 / 0%),
+    rgb(9 11 18 / 68%) 68%,
+    #090b12
+  );
+  pointer-events: none;
+  content: '';
+}
+
 .what-i-build__media,
 .what-i-build__overlay {
   position: absolute;
@@ -194,6 +211,10 @@
 }
 
 @media (max-width: 64rem) {
+  .what-i-build::after {
+    height: 6.5rem;
+  }
+
   .what-i-build__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -207,6 +228,10 @@
 
   .what-i-build::before {
     height: 8rem;
+  }
+
+  .what-i-build::after {
+    height: 5.625rem;
   }
 
   .what-i-build__grid {
