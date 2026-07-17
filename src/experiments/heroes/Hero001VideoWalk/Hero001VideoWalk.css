@@ -5,9 +5,22 @@
   min-height: 100svh;
   overflow: hidden;
   isolation: isolate;
+  z-index: 1;
   align-items: center;
   background: #080a0e;
   color: #f5f7fa;
+}
+
+.video-walk::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  height: 11.25rem;
+  background: linear-gradient(to bottom, rgb(5 6 10 / 0%), rgb(5 6 10 / 75%), #05060a);
+  pointer-events: none;
+  content: '';
 }
 
 .video-walk__media,
@@ -256,6 +269,10 @@
 }
 
 @media (max-width: 40rem) {
+  .video-walk::after {
+    height: 8.75rem;
+  }
+
   .video-walk__media {
     object-position: 66% center;
   }

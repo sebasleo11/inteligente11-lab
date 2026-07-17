@@ -1,15 +1,29 @@
 .what-i-build {
   position: relative;
+  z-index: 0;
   display: grid;
   min-height: 100vh;
   min-height: 100svh;
-  margin-top: 6rem;
+  margin-top: -4rem;
   overflow: hidden;
   isolation: isolate;
-  padding: clamp(7rem, 12vw, 11rem) clamp(1.5rem, 6vw, 6rem);
+  padding: calc(clamp(7rem, 12vw, 11rem) + 4rem) clamp(1.5rem, 6vw, 6rem)
+    clamp(7rem, 12vw, 11rem);
   background: #05060a;
   color: #f5f7fa;
   place-items: center;
+}
+
+.what-i-build::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 0;
+  height: 10rem;
+  background: linear-gradient(to bottom, #05060a, rgb(5 6 10 / 72%), rgb(5 6 10 / 0%));
+  pointer-events: none;
+  content: '';
 }
 
 .what-i-build__media,
@@ -187,8 +201,12 @@
 
 @media (max-width: 40rem) {
   .what-i-build {
-    margin-top: 5rem;
-    padding: 6rem 1.5rem;
+    margin-top: -3rem;
+    padding: 9rem 1.5rem 6rem;
+  }
+
+  .what-i-build::before {
+    height: 8rem;
   }
 
   .what-i-build__grid {
