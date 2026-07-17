@@ -1,0 +1,221 @@
+.what-i-build {
+  position: relative;
+  display: grid;
+  min-height: 100vh;
+  min-height: 100svh;
+  margin-top: 6rem;
+  overflow: hidden;
+  isolation: isolate;
+  padding: clamp(7rem, 12vw, 11rem) clamp(1.5rem, 6vw, 6rem);
+  background: #05060a;
+  color: #f5f7fa;
+  place-items: center;
+}
+
+.what-i-build__media,
+.what-i-build__overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.what-i-build__media {
+  z-index: -2;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.78;
+  pointer-events: none;
+}
+
+.what-i-build__overlay {
+  z-index: -1;
+  pointer-events: none;
+}
+
+.what-i-build__overlay::before {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 56% 48% at 24% 22%,
+    rgb(3 5 11 / 72%) 0%,
+    rgb(3 5 11 / 42%) 48%,
+    transparent 100%
+  );
+  content: '';
+}
+
+.what-i-build__inner {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 76rem);
+}
+
+.what-i-build__header {
+  width: 90%;
+  margin-inline: auto;
+}
+
+.what-i-build__label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+  color: rgb(245 247 250 / 88%);
+  font-size: clamp(1.25rem, 1.7vw, 1.5rem);
+  font-weight: 650;
+  letter-spacing: 0.22em;
+  line-height: 1.4;
+}
+
+.what-i-build__label::before {
+  width: 3.5rem;
+  height: 1px;
+  flex: none;
+  background: rgb(255 255 255 / 26%);
+  content: '';
+}
+
+.what-i-build__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  width: 90%;
+  margin: clamp(2.5rem, 4vw, 3.5rem) auto 0;
+}
+
+.what-i-build__card {
+  display: flex;
+  flex-direction: column;
+  height: 21rem;
+  margin: 0;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  background: rgb(15 20 35 / 45%);
+  box-shadow: 0 0.9375rem 2.5rem rgb(0 0 0 / 35%);
+  backdrop-filter: blur(22px);
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition:
+    opacity 600ms ease,
+    transform 600ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease,
+    backdrop-filter 300ms ease;
+}
+
+.what-i-build--visible .what-i-build__card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.what-i-build--visible .what-i-build__card:nth-child(2) {
+  transition-delay: 120ms;
+}
+
+.what-i-build--visible .what-i-build__card:nth-child(3) {
+  transition-delay: 240ms;
+}
+
+.what-i-build__card:hover {
+  border-color: rgb(94 168 255 / 68%);
+  box-shadow:
+    0 1.25rem 3.25rem rgb(0 0 0 / 38%),
+    0 0 2rem rgb(94 168 255 / 18%),
+    0 0 3rem rgb(139 92 246 / 12%);
+  backdrop-filter: blur(28px);
+  transform: translateY(-0.5rem);
+  transition-delay: 0ms;
+}
+
+.what-i-build__icon {
+  display: grid;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 1rem;
+  background: linear-gradient(145deg, rgb(94 168 255 / 14%), rgb(139 92 246 / 10%));
+  box-shadow:
+    0 0 1.5rem rgb(94 168 255 / 13%),
+    inset 0 1px 0 rgb(255 255 255 / 10%);
+  backdrop-filter: blur(14px);
+  color: #5ea8ff;
+  place-items: center;
+}
+
+.what-i-build__icon svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.4;
+}
+
+.what-i-build__card h3 {
+  margin: 2rem 0 0;
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.what-i-build__card p {
+  margin: 1rem 0 0;
+  color: rgb(255 255 255 / 72%);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.what-i-build__arrow {
+  margin-top: auto;
+  padding-top: 1.25rem;
+  color: #5ea8ff;
+  font-size: 1.5rem;
+  line-height: 1;
+  text-shadow: 0 0 1rem rgb(139 92 246 / 42%);
+}
+
+@media (max-width: 64rem) {
+  .what-i-build__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 40rem) {
+  .what-i-build {
+    margin-top: 5rem;
+    padding: 6rem 1.5rem;
+  }
+
+  .what-i-build__grid {
+    grid-template-columns: 1fr;
+    margin-top: 3rem;
+  }
+
+  .what-i-build__card {
+    height: 20rem;
+    padding: 2rem;
+  }
+
+  .what-i-build__media {
+    object-position: 55% center;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .what-i-build__media {
+    opacity: 0.7;
+  }
+
+  .what-i-build__card,
+  .what-i-build__card:hover {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
