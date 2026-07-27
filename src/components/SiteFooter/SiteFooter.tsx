@@ -20,6 +20,9 @@ const socialLinks = [
   },
 ]
 
+const whatsappUrl =
+  'https://wa.me/5491131772207?text=Hola%20Sebasti%C3%A1n.%0A%0AVi%20tu%20p%C3%A1gina%20web%20y%20me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto.'
+
 export function SiteFooter() {
   const footerRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
@@ -53,11 +56,24 @@ export function SiteFooter() {
       ref={footerRef}
     >
       <div className="site-footer__inner">
-        <p className="site-footer__copyright">
-          © 2026 Inteligente11 — Sebastián Acuña.
-          <br />
-          Todos los derechos reservados.
-        </p>
+        <div className="site-footer__information">
+          <p className="site-footer__copyright">
+            © 2026 Inteligente11 LAB — Sebastián Acuña. Todos los derechos reservados.
+          </p>
+
+          <nav className="site-footer__legal" aria-label="Información legal y contacto">
+            <a href="/privacidad">Privacidad</a>
+            <a href="/terminos">Términos</a>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Contacto por WhatsApp, abre en una pestaña nueva"
+            >
+              Contacto
+            </a>
+          </nav>
+        </div>
 
         <nav className="site-footer__socials" aria-label="Redes sociales">
           {socialLinks.map(({ label, href, Icon }) => (
