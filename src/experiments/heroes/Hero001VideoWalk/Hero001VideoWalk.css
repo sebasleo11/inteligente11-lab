@@ -11,6 +11,12 @@
   color: #f5f7fa;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 .video-walk::after {
   position: absolute;
   right: 0;
@@ -69,6 +75,49 @@
   );
 }
 
+.video-walk__nav {
+  position: absolute;
+  top: clamp(1.25rem, 3vw, 2rem);
+  right: clamp(1.5rem, 3vw, 3rem);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 999px;
+  padding: 0.35rem;
+  background: rgb(5 9 16 / 42%);
+  box-shadow: 0 0.75rem 2rem rgb(0 0 0 / 12%);
+  backdrop-filter: blur(14px);
+}
+
+.video-walk__nav a {
+  border-radius: 999px;
+  padding: 0.55rem 0.85rem;
+  color: rgb(245 247 250 / 76%);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease;
+}
+
+.video-walk__nav a:hover {
+  background: rgb(255 255 255 / 7%);
+  color: #fff;
+}
+
+.video-walk__nav a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.video-walk__nav .video-walk__nav-contact {
+  background: rgb(139 184 255 / 14%);
+  color: #dceaff;
+}
+
 .video-walk__identity {
   position: absolute;
   right: clamp(1.5rem, 2.25vw, 2rem);
@@ -77,16 +126,17 @@
   display: grid;
   align-content: center;
   box-sizing: border-box;
-  width: clamp(14rem, 19vw, 17.5rem);
-  min-width: 14rem;
-  min-height: 5.25rem;
+  width: clamp(13rem, 17vw, 15.5rem);
+  min-width: 13rem;
+  min-height: 4.75rem;
   overflow: hidden;
   border: 1px solid rgb(255 255 255 / 10%);
   border-radius: 1rem;
-  padding: 0.95rem 1rem 1.1rem;
-  background: linear-gradient(145deg, rgb(13 20 34 / 82%), rgb(5 9 16 / 70%));
+  padding: 0.8rem 0.9rem 0.95rem;
+  background: linear-gradient(145deg, rgb(13 20 34 / 72%), rgb(5 9 16 / 62%));
   box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 18%);
   backdrop-filter: blur(16px);
+  opacity: 0.86;
   transition:
     transform 280ms ease,
     box-shadow 280ms ease;
@@ -185,6 +235,19 @@
   color: #07101d;
 }
 
+.video-walk__button--hero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background: linear-gradient(135deg, #a7c9ff, var(--color-accent));
+  box-shadow:
+    0 0.75rem 2rem rgb(15 49 98 / 30%),
+    0 0 1.5rem rgb(139 184 255 / 14%);
+  text-align: center;
+  text-decoration: none;
+}
+
 .video-walk__button--secondary {
   border-color: rgb(255 255 255 / 24%);
   background: rgb(255 255 255 / 6%);
@@ -200,6 +263,13 @@
   background: #a9caff;
 }
 
+.video-walk__button--hero:hover {
+  background: linear-gradient(135deg, #bed8ff, #9bc2ff);
+  box-shadow:
+    0 1rem 2.4rem rgb(15 49 98 / 38%),
+    0 0 1.75rem rgb(139 184 255 / 20%);
+}
+
 .video-walk__button--secondary:hover {
   border-color: rgb(255 255 255 / 40%);
   background: rgb(255 255 255 / 10%);
@@ -212,6 +282,16 @@
 
 .video-walk__button:active {
   transform: translateY(0);
+}
+
+.video-walk__button-arrow {
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: transform 220ms ease;
+}
+
+.video-walk__button:hover .video-walk__button-arrow {
+  transform: translateX(3px);
 }
 
 .video-walk__title span,
@@ -261,9 +341,9 @@
   .video-walk__identity {
     right: 1.5rem;
     bottom: calc(8vh - 0.625rem);
-    width: clamp(13.5rem, 27vw, 15rem);
-    min-width: 13.5rem;
-    min-height: 4.75rem;
+    width: clamp(12.75rem, 25vw, 14rem);
+    min-width: 12.75rem;
+    min-height: 4.5rem;
     padding: 0.8rem 0.875rem 0.9rem;
   }
 }
@@ -274,12 +354,27 @@
   }
 
   .video-walk__media {
-    object-position: 66% center;
+    object-position: 63% center;
+  }
+
+  .video-walk__nav {
+    top: 0.85rem;
+    right: 0.75rem;
+    left: 0.75rem;
+    justify-content: center;
+    gap: 0.1rem;
+    padding: 0.25rem;
+  }
+
+  .video-walk__nav a {
+    padding: 0.5rem 0.65rem;
+    font-size: 0.75rem;
   }
 
   .video-walk__content {
     width: min(100% - 2.5rem, 24rem);
     margin-left: 1.25rem;
+    padding-block: 7rem 9rem;
   }
 
   .video-walk__title {
@@ -304,7 +399,7 @@
   .video-walk__identity {
     right: 1rem;
     bottom: calc(7vh - 0.5rem);
-    width: min(13.5rem, calc(100% - 2rem));
+    width: min(12.5rem, calc(100% - 2rem));
     min-width: 0;
     min-height: 4.25rem;
     padding: 0.7rem 0.75rem 0.75rem;
@@ -338,6 +433,8 @@
   }
 
   .video-walk__button,
+  .video-walk__button-arrow,
+  .video-walk__nav a,
   .video-walk__identity {
     transition: none;
   }
