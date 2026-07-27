@@ -1,10 +1,18 @@
-import { type SyntheticEvent, useEffect, useRef, useState } from 'react'
+import { type ReactNode, type SyntheticEvent, useEffect, useRef, useState } from 'react'
 import './Section002WhatIBuild.css'
 
-const services = [
+type Service = {
+  title: string
+  description: string
+  href?: string
+  icon: ReactNode
+}
+
+const services: Service[] = [
   {
     title: 'Páginas Web',
     description: 'Sitios rápidos, modernos y optimizados para convertir visitantes en clientes.',
+    href: 'https://www.inteligente11.com',
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <rect x="3" y="4" width="18" height="16" rx="2" />
@@ -15,6 +23,7 @@ const services = [
   {
     title: 'Automatizaciones',
     description: 'Procesos inteligentes que trabajan por vos las 24 horas.',
+    href: 'https://www.modelsxl.com',
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M8.2 5.3A7.5 7.5 0 0 1 19 9l2-1v5h-5l2-1a5.5 5.5 0 0 0-9.1-4.8M15.8 18.7A7.5 7.5 0 0 1 5 15l-2 1v-5h5l-2 1a5.5 5.5 0 0 0 9.1 4.8" />
@@ -38,6 +47,7 @@ export function Section002WhatIBuild() {
   const sectionRef = useRef<HTMLElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const [isApplicationOpen, setIsApplicationOpen] = useState(false)
 
   useEffect(() => {
     const section = sectionRef.current
@@ -96,6 +106,17 @@ export function Section002WhatIBuild() {
     }
   }
 
+  const renderServiceContent = (service: Service) => (
+    <>
+      <div className="what-i-build__icon">{service.icon}</div>
+      <h3>{service.title}</h3>
+      <p>{service.description}</p>
+      <span className="what-i-build__arrow" aria-hidden="true">
+        →
+      </span>
+    </>
+  )
+
   return (
     <section
       className={`what-i-build${isVisible ? ' what-i-build--visible' : ''}`}
@@ -125,16 +146,48 @@ export function Section002WhatIBuild() {
         </header>
 
         <div className="what-i-build__grid">
-          {services.map((service) => (
-            <article className="what-i-build__card" key={service.title}>
-              <div className="what-i-build__icon">{service.icon}</div>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-              <span className="what-i-build__arrow" aria-hidden="true">
-                →
-              </span>
-            </article>
-          ))}
+          {services.map((service) => {
+            if (service.href) {
+              return (
+                <a
+                  className="what-i-build__card"
+                  href={service.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${service.title}: abrir proyecto en una pestaña nueva`}
+                  key={service.title}
+                >
+                  {renderServiceContent(service)}
+                </a>
+              )
+            }
+
+            return (
+              <button
+                className={`what-i-build__card what-i-build__card--expandable${isApplicationOpen ? ' what-i-build__card--open' : ''}`}
+                type="button"
+                aria-expanded={isApplicationOpen}
+                aria-controls="what-i-build-application-details"
+                onClick={() => setIsApplicationOpen((isOpen) => !isOpen)}
+                key={service.title}
+              >
+                {renderServiceContent(service)}
+
+                <span
+                  className="what-i-build__details"
+                  id="what-i-build-application-details"
+                  aria-hidden={!isApplicationOpen}
+                >
+                  <strong>ERP Córdoba Bulones</strong>
+                  <span>
+                    Aplicación comercial a medida actualmente en desarrollo para gestionar
+                    clientes, productos, cotizaciones, pedidos, logística y cuentas corrientes.
+                  </span>
+                  <small>En desarrollo</small>
+                </span>
+              </button>
+            )
+          })}
         </div>
       </div>
     </section>
